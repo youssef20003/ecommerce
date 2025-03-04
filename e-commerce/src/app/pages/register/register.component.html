@@ -1,0 +1,108 @@
+<section class="  p-2 w-[90%] mx-auto  my-10 ">
+    <h1 class="text-main font-black text-4xl ">Register</h1>
+    @if (restext) {
+    <span class="bg-red-700 p-3">{{restext}}</span>
+    }
+    <form [formGroup]="registerform" (ngSubmit)="submitRegisterForm()">
+        <div class="my-6">
+            @let nameformControl = registerform.get('name');
+            <label for="name" class="block mb-2 text-sm font-medium">Name</label>
+            <input [class]="{ 'my-valid' : !nameformControl?.errors && (nameformControl?.touched || nameformControl?.dirty),
+                    'my-invalid': nameformControl?.errors && (nameformControl?.touched || nameformControl?.dirty)}"
+                formControlName="name" type="text" id="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            @if (nameformControl?.errors && nameformControl?.touched) {
+            <div class=" p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <span class="font-medium">Check errors:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(nameformControl?.getError('required')) { <li>Name is required</li> }
+                    @if(nameformControl?.getError('minlength')) { <li>Name must be at least 3 characters</li> }
+                    @if(nameformControl?.getError('maxlength')) { <li>Name must be at most 10 characters</li> }
+                </ul>
+            </div>
+            }
+        </div>
+
+
+
+        <div class="my-6">
+            @let emailformControl = registerform.get('email');
+            <label for="email" class="block mb-2 text-sm font-medium">Email</label>
+            <input [class]="{ 'my-valid' : !emailformControl?.errors && (emailformControl?.touched || emailformControl?.dirty),
+                    'my-invalid': emailformControl?.errors && (emailformControl?.touched || emailformControl?.dirty)}"
+                formControlName="email" type="email" id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            @if (emailformControl?.errors && emailformControl?.touched) {
+            <div class=" p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <span class="font-medium">Check errors:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(emailformControl?.getError('required')) { <li>Email is required</li> }
+                </ul>
+            </div>
+            }
+        </div>
+
+
+
+        <div class="my-6">
+            @let passwordformControl = registerform.get('password');
+            <label for="password" class="block mb-2 text-sm font-medium">Password</label>
+            <input
+                [class]="{ 'my-valid' : !passwordformControl?.errors && (passwordformControl?.touched || passwordformControl?.dirty),
+                    'my-invalid': passwordformControl?.errors && (passwordformControl?.touched || passwordformControl?.dirty)}"
+                formControlName="password" type="password" id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            @if (passwordformControl?.errors && passwordformControl?.touched) {
+            <div class=" p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <span class="font-medium">Check errors:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(passwordformControl?.getError('required')) { <li>Password is required</li> }
+                </ul>
+            </div>
+            }
+        </div>
+
+        <div class="my-6">
+            @let rePasswordformControl = registerform.get('rePassword');
+            <label for="repassword" class="block mb-2 text-sm font-medium">Re-enter Password</label>
+            <input
+                [class]="{ 'my-valid' : !registerform.errors && (rePasswordformControl?.touched || rePasswordformControl?.dirty),
+                    'my-invalid': registerform.errors && (rePasswordformControl?.touched || rePasswordformControl?.dirty)}"
+                formControlName="rePassword" type="password" id="repassword"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            @if (registerform.errors && rePasswordformControl?.touched) {
+            <div class=" p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <span class="font-medium">Check errors:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(rePasswordformControl?.getError('required')) { <li>Re-enter Password is required</li> }
+                </ul>
+            </div>
+            }
+        </div>
+
+        <div class="my-6">
+            @let phoneformControl = registerform.get('phone');
+            <label for="phone" class="block mb-2 text-sm font-medium">Phone</label>
+            <input [class]="{ 'my-valid' : !phoneformControl?.errors && (phoneformControl?.touched || phoneformControl?.dirty),
+                'my-invalid': phoneformControl?.errors && (phoneformControl?.touched || phoneformControl?.dirty)}"
+                formControlName="phone" type="tel" id="phone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            @if (phoneformControl?.errors && phoneformControl?.touched) {
+            <div class=" p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <span class="font-medium">Check errors:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(phoneformControl?.getError('required')) { <li>Phone number is required</li> }
+                </ul>
+            </div>
+            }
+        </div>
+
+        <button [disabled]="registerform.invalid"
+            class="my-btn disabled:bg-slate-400 rounded-md p-2 text-xl text-white w-full btn-main">
+            @if (!loading) {signup <span><i class="fa-solid fa-user-plus"></i></span>}
+                @if (loading) {<span><i class="fa-solid fa-circle-notch fa-spin"></i></span>}
+            </button>
+
+    </form>
+    <h3 class="my-4">already a member <a class="text-main" routerLink="/login"> signin</a></h3>
+</section>

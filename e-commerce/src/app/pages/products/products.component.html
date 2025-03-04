@@ -1,0 +1,32 @@
+<input [(ngModel)]="searchvalue" type="text" placeholder="search products"
+    class="p-4 my-6 mx-auto block rounded w-[50%]">
+
+<section class="p-4 my-6 mx-auto w-[90%]">
+    <div class="container max-w-full">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            @for (product of productsdata | search : searchvalue; track product._id) {
+            <div class="product p-4 cursor-pointer">
+                <div [routerLink]="['/product-details' , product._id]">
+                    <div>
+                        <img src={{product.imageCover}} alt={{product.title}}>
+                    </div>
+                    <div>
+                        <h2 class="text-main">{{ product.category.name }}</h2>
+                        <h1 class="font-black">{{ product.title.split(' ').slice(0,3).join(' ') }}</h1>
+                    </div>
+                    <div class="flex flex-wrap justify-between mt-4">
+                        <h3>{{ product.price | currency:'GBP' }}</h3>
+                        <span><i class="fa-solid fa-star rating-color"></i> {{ product.ratingsAverage }}</span>
+                    </div>
+                </div>
+                <div class="mt-4 relative">
+                    <button (click)="addtocart(product._id)" class="btn-main w-3/4 block">+ Add to cart</button>
+                    <span (click)="addtowishlist(product._id)" class="absolute top-0 right-0 text-4xl love">
+                        <i class="fa-solid fa-heart"></i>
+                    </span>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

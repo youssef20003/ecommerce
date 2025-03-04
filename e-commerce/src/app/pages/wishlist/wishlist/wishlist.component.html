@@ -1,0 +1,26 @@
+<section class="p-4 w-[90%] mx-auto my-4">
+    <h1 class="font-black text-4xl text-main my-3">My Wish List</h1>
+    <div class="container w-full mx-auto my-4">
+        <div class="flex flex-wrap gap-6 items-center bg-white p-4 rounded-lg shadow-lg">
+
+            @for (product of Products; track product._id) {
+            <div class="w-full sm:w-1/5">
+                <img [src]="product.imageCover" alt="Product Image" class="w-full object-cover rounded-lg">
+            </div>
+
+            <div class="w-full sm:w-2/5">
+                <h1 class="font-black text-3xl">{{ product.title }}</h1>
+                <h2 class="font-black text-xl text-emerald-400">{{ product.price | currency:'GBP' }}</h2>
+                <button (click)="removewishlistitem(product._id)"
+                    class="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    Remove <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+
+            <div class="w-full sm:w-1/5">
+                <button (click)="addtocart(product._id)" class="btn-main">Add to Cart</button>
+            </div>
+            }
+        </div>
+    </div>
+</section>

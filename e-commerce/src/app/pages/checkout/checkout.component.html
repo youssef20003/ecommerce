@@ -1,0 +1,38 @@
+<section class="  p-4 w-[90%] mx-auto my-4 ">
+    <h1 class="text-emerald-400 font-black text-4xl ">Register</h1>
+
+    <form [formGroup]="detailsform" (ngSubmit)=" checkout()">
+
+
+        <div class="my-6">
+            @let detiailsformcontrol = detailsform.get('details');
+            <label for="details" class="block mb-2 text-sm font-medium">details</label>
+            <input [class]="{ 'my-valid' : !detiailsformcontrol?.errors && (detiailsformcontrol?.touched || detiailsformcontrol?.dirty),
+                    'my-invalid': detiailsformcontrol?.errors && (detiailsformcontrol?.touched || detiailsformcontrol?.dirty)}"
+                formControlName="details" type="text" id="details"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        </div>
+
+        <div class="my-6">
+            @let phone = detailsform.get('phone');
+            <label for="phone" class="block mb-2 text-sm font-medium">phone</label>
+            <input [class]="{ 'my-valid' : !phone?.errors && (phone?.touched || phone?.dirty),
+                    'my-invalid': phone?.errors && (phone?.touched || phone?.dirty)}"
+                formControlName="phone" type="tel" id="phone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        </div>
+
+        
+        <div class="my-6">
+            @let city = detailsform.get('city');
+            <label for="city" class="block mb-2 text-sm font-medium">city</label>
+            <input [class]="{ 'my-valid' : !city?.errors && (city?.touched || city?.dirty),
+                    'my-invalid': city?.errors && (city?.touched || city?.dirty)}"
+                formControlName="city" type="text" id="city"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        </div>
+
+
+<button class="btn-main"> pay <span><i class="fa-brands fa-cc-visa"></i></span></button>
+    </form>
+</section>

@@ -1,0 +1,16 @@
+.product{
+    button{
+        transform: translateY(150%);
+        transition: all 0.3s;
+    }
+
+    &:hover{
+        button{
+            transform: translateX(0%);
+        }
+    }
+}
+
+.tpos{
+    position: fixed;
+}
