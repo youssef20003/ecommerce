@@ -1,4 +1,4 @@
 export const envo = {
     baseurl : 'https://ecommerce.routemisr.com',
-    url : 'http://localhost:4200'
+    url : 'https://ecommerce-lilac-tau-44.vercel.app'
 }
