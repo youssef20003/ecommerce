@@ -9,17 +9,6 @@ import { MainComponent } from './layouts/main-layout/main/main.component';
 import { authGuard } from './core/guard/auth.guard';
 
 export const routes: Routes = [
-    // {path:'' ,redirectTo:'home' , pathMatch:'full'},
-    // {path:'home' ,component:HomeComponent ,title:'Home'},
-    // {path:'products' ,component:ProductsComponent ,title:'Products'},
-    // {path:'brands' ,component:BrandsComponent ,title:'Brands'},
-    // {path:'categories' ,component:CategoriesComponent ,title:'categories'},
-    // {path:'cart' ,component:CartComponent ,title:'Cart'},
-    // {path:'login' ,component:LoginComponent ,title:'Login'},
-    // {path:'register' ,component:RegisterComponent ,title:'Register'},
-    // {path:'**' ,component:NotfoundComponent , title:'error404'}
-
-    
     {
         
         path: '', component: AuthComponent, children: [
@@ -30,6 +19,7 @@ export const routes: Routes = [
     },
     {
         path: '', component: MainComponent, children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full',  },
             { path: 'home', component: HomeComponent, title: 'Home',  },
             { path: 'products', loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent), title: 'Products' },
             { path: 'brands', loadComponent: () => import('./pages/brands/brands.component').then(m => m.BrandsComponent), title: 'Brands' },
