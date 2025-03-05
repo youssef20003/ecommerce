@@ -64,12 +64,4 @@ if (isMainModule(import.meta.url)) {
  * The request handler used by the Angular CLI (dev-server and during build).
  */
 export const reqHandler = createNodeRequestHandler(app);
-export function getPrerenderParams(route: string) {
-  if (route.startsWith('checkout/')) {
-    return [{ c_id: 'sample-checkout-id' }];
-  }
-  if (route.startsWith('product-details/')) {
-    return [{ id: 'sample-product-id' }];
-  }
-  return [];
-}
+
