@@ -42,7 +42,17 @@ export class WishlistComponent implements OnInit {
     this._WishlistService.Removeproductfromwishlistt(p_id).subscribe({
       next:(res)=>{
         console.log(res)
-        this.Products = res.data
+        this._WishlistService.Getloggeduserwishlist().subscribe({
+          next:(res)=>{
+            this.Products = res.data
+            console.log(this.Products)
+            this._NgxSpinnerService.hide()
+          },
+          error:(err)=>{
+            console.log(err)
+          }
+        })
+        
       }
     })
     
